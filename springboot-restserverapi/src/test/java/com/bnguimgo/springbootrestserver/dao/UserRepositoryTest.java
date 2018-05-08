@@ -40,7 +40,6 @@ public class UserRepositoryTest {
 		List<User> users = userRepository.findAll();
 		
 		// on a trois users dans le fichier d'initialisation data.sql et un utilisateur ajouté
-		
 		assertThat(4, is(users.size()));
 										
 	}
