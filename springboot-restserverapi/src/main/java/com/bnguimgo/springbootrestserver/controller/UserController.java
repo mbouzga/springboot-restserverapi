@@ -1,8 +1,10 @@
 package com.bnguimgo.springbootrestserver.controller;
 
 import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -31,6 +33,7 @@ import com.bnguimgo.springbootrestserver.entities.Role;
 import com.bnguimgo.springbootrestserver.entities.User;
 import com.bnguimgo.springbootrestserver.service.RoleService;
 import com.bnguimgo.springbootrestserver.service.UserService;
+import com.bnguimgo.springbootrestserver.utils.UserUtils;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:8081", maxAge = 3600)
@@ -44,10 +47,18 @@ public class UserController {
 	private RoleService roleService;
 
 	@GetMapping(value = "/users")
-	public ResponseEntity<Collection<User>> getAllUsers() {
+	public Collection<UserDTO> getAllUsers() {
 		Collection<User> users = userService.getAllUsers();
 		logger.info("liste des utilisateurs : " + users.toString());
-		return new ResponseEntity<Collection<User>>(users, HttpStatus.FOUND);
+		
+		if(!users.isEmpty()){
+			List<UserDTO> usersDTO = new ArrayList<>();
+			for(User u: users){
+				usersDTO.add(UserUtils.mapUserEntityToDto(u));
+			}
+			return usersDTO;
+		}
+		return new ArrayList<>();
 	}
 
 	@GetMapping("/user/{userId}")

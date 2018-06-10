@@ -1,6 +1,7 @@
 package com.bnguimgo.springbootrestserver.dto;
 
 import java.io.Serializable;
+import java.util.Collection;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -16,7 +17,8 @@ public class UserDTO implements Serializable {
 	private String password;
 	private String userType;
 	private Integer active;
-
+	//private Collection<ChargeDTO> charges;
+	
 	public UserDTO() {
 	}
 
@@ -41,6 +43,15 @@ public class UserDTO implements Serializable {
 		this.login = login;
 		this.password = password;
 		this.userType = userType;
+	}
+
+	
+	public UserDTO(Long id, String login, String password, Integer active) {
+		super();
+		this.id = id;
+		this.login = login;
+		this.password = password;
+		this.active = active;
 	}
 
 	public Long getId() {
@@ -92,5 +103,15 @@ public class UserDTO implements Serializable {
 	public String toString() {
 		return String.format("[id=%s, mail=%s, userType=%s]", id, login, userType);
 	}
+
+//	public Collection<ChargeDTO> getCharges() {
+//		return charges;
+//	}
+//
+//	public void setCharges(Collection<ChargeDTO> charges) {
+//		this.charges = charges;
+//	}
+	
+	
 
 }

@@ -1,11 +1,16 @@
 package com.bnguimgo.springbootrestserver.utils;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
+import com.bnguimgo.springbootrestserver.dto.ChargeDTO;
 import com.bnguimgo.springbootrestserver.dto.RoleDTO;
 import com.bnguimgo.springbootrestserver.dto.UserDTO;
+import com.bnguimgo.springbootrestserver.entities.Charge;
 import com.bnguimgo.springbootrestserver.entities.Role;
 import com.bnguimgo.springbootrestserver.entities.User;
 
@@ -23,6 +28,13 @@ public class UserUtils {
 			userDto.setPassword(userEntity.getPassword());
 			userDto.setUserType("");
 			
+//			if(!userEntity.getCharges().isEmpty()){
+//				List<ChargeDTO> chargesDTO = new ArrayList<>();
+//				for(Charge charge : userEntity.getCharges()){
+//					chargesDTO.add(ChargeUtils.mapChargeEntityToDto(charge));
+//				}
+//				userDto.setCharges(chargesDTO);
+//			}
 			return userDto;
 		}
 	}
@@ -32,6 +44,7 @@ public class UserUtils {
 			return null;
 		} else {
 			User userEntity = new User();
+			userEntity.setId(userDto.getId());
 			userEntity.setLogin(userDto.getLogin());
 			userEntity.setPassword(userDto.getPassword());
 			userEntity.setActive(1);

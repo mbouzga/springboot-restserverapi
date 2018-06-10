@@ -2,6 +2,7 @@ package com.bnguimgo.springbootrestserver.entities;
 
 import java.io.Serializable;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.*;
@@ -37,6 +38,9 @@ public class User implements Serializable {
 	@ManyToMany(cascade = CascadeType.DETACH)
 	@JoinTable(name = "USER_ROLE", joinColumns = @JoinColumn(name = "USER_ID"), inverseJoinColumns = @JoinColumn(name = "ROLE_ID"))
 	private Set<Role> roles = new HashSet<>();
+	
+	@OneToMany(mappedBy = "user")
+	private List<Charge> charges;
 
 	public User() {
 		super();
@@ -113,6 +117,16 @@ public class User implements Serializable {
 	@XmlElement
 	public void setRoles(Set<Role> roles) {
 		this.roles = roles;
+	}
+
+	
+	public List<Charge> getCharges() {
+		return charges;
+	}
+
+	@XmlElement
+	public void setCharges(List<Charge> charges) {
+		this.charges = charges;
 	}
 
 	@Override
