@@ -10,4 +10,5 @@ public interface ChargeService {
 	Collection<ChargeDTO> getChargesByName(String nom);
 	Collection<ChargeDTO> saveOrUpdateCharges(Collection<ChargeDTO> charges);
 	void deleteCharge(Long id);
+	
 }
